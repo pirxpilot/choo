@@ -1,3 +1,14 @@
+
+1.0.0 / 2021-05-05
+==================
+
+ * rename to @pirxpilot/choo
+ * use only top level assert
+ * update dependencies
+ * remove nanohtml from core
+ * remove built-in component and cache support
+ * stop distributing built version of the library
+
 ## `7.0.0` All the little things
 It has been quite a while since the last major version of Choo. Since it's
 release, `choo@6` has recieved a bunch of features and patches, but some changes
