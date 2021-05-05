@@ -108,7 +108,7 @@ tape('state should include location on render', function (t) {
     t.ok(state.hasOwnProperty('params'), 'state has params')
     t.deepEqual(state.params, params, 'params match')
     t.ok(state.hasOwnProperty('query'), 'state has query')
-    t.deepEqual(state.query, { bin: 'baz' }, 'query match')
+    t.deepLooseEqual(state.query, { bin: 'baz' }, 'query match')
     return h('div')
   })
   app.toString('/foo/bar/file.txt?bin=baz')
@@ -131,7 +131,7 @@ tape('state should include location on store init', function (t) {
     t.ok(state.hasOwnProperty('params'), 'state has params')
     t.deepEqual(state.params, params, 'params match')
     t.ok(state.hasOwnProperty('query'), 'state has query')
-    t.deepEqual(state.query, { bin: 'baz' }, 'query match')
+    t.deepLooseEqual(state.query, { bin: 'baz' }, 'query match')
   }
 })
 
