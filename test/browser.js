@@ -104,62 +104,6 @@ tape('router should ignore hashes by default', function (t) {
   app.mount(container)
 })
 
-tape('cache should default to 100 instances', function (t) {
-  t.plan(1)
-  var app = choo()
-  var container = init()
-  app.route('/', function (state, emit) {
-    for (var i = 0; i <= 100; i++) state.cache(Component, i)
-    state.cache(Component, 0)
-    return html`<div></div>`
-
-    function Component (id) {
-      if (id < i) t.pass('oldest instance was pruned when exceeding 100')
-    }
-  })
-  app.mount(container)
-})
-
-tape('cache option should override number of max instances', function (t) {
-  t.plan(1)
-  var app = choo({ cache: 1 })
-  var container = init()
-  app.route('/', function (state, emit) {
-    var instances = 0
-    state.cache(Component, instances)
-    state.cache(Component, instances)
-    state.cache(Component, 0)
-    return html`<div></div>`
-
-    function Component (id) {
-      if (id < instances) t.pass('oldest instance was pruned when exceeding 1')
-      instances++
-    }
-  })
-  app.mount(container)
-})
-
-tape('cache option should override default LRU cache', function (t) {
-  t.plan(2)
-  var cache = {
-    get (Component, id) {
-      t.pass('called get')
-    },
-    set (Component, id) {
-      t.pass('called set')
-    }
-  }
-  var app = choo({ cache: cache })
-  var container = init()
-  app.route('/', function (state, emit) {
-    state.cache(Component, 'foo')
-    return html`<div></div>`
-  })
-  app.mount(container)
-
-  function Component () {}
-})
-
 // built-in state
 
 tape('state should include events', function (t) {
@@ -229,26 +173,6 @@ tape('state should include title', function (t) {
     return html`<div></div>`
   })
   app.mount(container)
-})
-
-tape('state should include cache', function (t) {
-  t.plan(6)
-  var app = choo()
-  var container = init()
-  app.route('/', function (state, emit) {
-    t.equal(typeof state.cache, 'function', 'state has cache method')
-    var cached = state.cache(Component, 'foo', 'arg')
-    t.equal(cached, state.cache(Component, 'foo'), 'consecutive calls return same instance')
-    return html`<div></div>`
-  })
-  app.mount(container)
-
-  function Component (id, state, emit, arg) {
-    t.equal(id, 'foo', 'id was prefixed to constructor args')
-    t.equal(typeof state, 'object', 'state was prefixed to constructor args')
-    t.equal(typeof emit, 'function', 'emit was prefixed to constructor args')
-    t.equal(arg, 'arg', 'constructor args were forwarded')
-  }
 })
 
 // create application container and set location

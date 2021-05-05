@@ -4,7 +4,7 @@ all: check
 
 deps:
 	$(BIN)/dependency-check --entry ./html/index.js .
-	$(BIN)/dependency-check . --extra --no-dev --entry ./html/index.js --entry ./component/index.js -i nanoassert
+	$(BIN)/dependency-check . --extra --no-dev --entry ./html/index.js -i nanoassert
 
 lint:
 	$(BIN)/standard

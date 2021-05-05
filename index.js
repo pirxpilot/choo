@@ -9,8 +9,6 @@ const nanoraf = require('nanoraf')
 const nanobus = require('nanobus')
 const assert = require('assert')
 
-const Cache = require('./component/cache')
-
 module.exports = choo
 
 const HISTORY_OBJECT = {}
@@ -149,7 +147,6 @@ function choo (opts = {}) {
       }
     }
 
-    setCache(state)
     matchRoute(state)
     stores.forEach(initStore => initStore(state))
 
@@ -218,7 +215,6 @@ function choo (opts = {}) {
     assert.equal(typeof location, 'string', 'choo.toString: location should be type string')
     assert.equal(typeof state, 'object', 'choo.toString: state should be type object')
 
-    setCache(state)
     matchRoute(state, location)
     emitter.removeAllListeners()
     stores.forEach(initStore => {
@@ -256,21 +252,5 @@ function choo (opts = {}) {
     const res = handler(state, emit)
     routeTiming()
     return res
-  }
-
-  function setCache (state) {
-    const cache = new Cache(state, emit, opts.cache)
-    state.cache = renderComponent
-
-    function renderComponent (...args) {
-      assert.equal(typeof args[0], 'function', 'choo.state.cache: Component should be type function')
-      return cache.render(...args)
-    }
-
-    // When the state gets stringified, make sure `state.cache` isn't
-    // stringified too.
-    renderComponent.toJSON = () => {
-      return null
-    }
   }
 }
