@@ -1,19 +1,21 @@
-var tape = require('tape')
-var h = require('hyperscript')
+const tape = require('tape')
+const h = require('hyperscript')
 
-var choo = require('..')
+const choo = require('..')
+
+/* eslint-disable no-prototype-builtins */
 
 tape('should mount in the DOM', function (t) {
   t.plan(1)
-  var app = choo()
-  var container = init('/', 'p')
+  const app = choo()
+  const container = init('/', 'p')
   app.route('/', function (state, emit) {
-    var strong = '<strong>Hello filthy planet</strong>'
+    const strong = '<strong>Hello filthy planet</strong>'
     window.requestAnimationFrame(function () {
-      var exp = '<p><strong>Hello filthy planet</strong></p>'
+      const exp = '<p><strong>Hello filthy planet</strong></p>'
       t.equal(container.outerHTML, exp, 'result was OK')
     })
-    var p = document.createElement('p')
+    const p = document.createElement('p')
     p.innerHTML = strong
     return p
   })
@@ -22,11 +24,11 @@ tape('should mount in the DOM', function (t) {
 
 tape('should render with hyperscript', function (t) {
   t.plan(1)
-  var app = choo()
-  var container = init('/', 'p')
+  const app = choo()
+  const container = init('/', 'p')
   app.route('/', function (state, emit) {
     window.requestAnimationFrame(function () {
-      var exp = '<p><strong>Hello filthy planet</strong></p>'
+      const exp = '<p><strong>Hello filthy planet</strong></p>'
       t.equal(container.outerHTML, exp, 'result was OK')
     })
     return h('p', h('strong', 'Hello filthy planet'))
@@ -35,7 +37,7 @@ tape('should render with hyperscript', function (t) {
 })
 
 tape('should expose a public API', function (t) {
-  var app = choo()
+  const app = choo()
 
   t.equal(typeof app.route, 'function', 'app.route prototype method exists')
   t.equal(typeof app.toString, 'function', 'app.toString prototype method exists')
@@ -51,7 +53,7 @@ tape('should expose a public API', function (t) {
 })
 
 tape('should enable history and href by defaut', function (t) {
-  var app = choo()
+  const app = choo()
   t.true(app._historyEnabled, 'history enabled')
   t.true(app._hrefEnabled, 'href enabled')
   t.end()
@@ -59,8 +61,8 @@ tape('should enable history and href by defaut', function (t) {
 
 tape('router should pass state and emit to view', function (t) {
   t.plan(2)
-  var app = choo()
-  var container = init()
+  const app = choo()
+  const container = init()
   app.route('/', function (state, emit) {
     t.equal(typeof state, 'object', 'state is an object')
     t.equal(typeof emit, 'function', 'emit is a function')
@@ -71,8 +73,8 @@ tape('router should pass state and emit to view', function (t) {
 
 tape('router should support a default route', function (t) {
   t.plan(1)
-  var app = choo()
-  var container = init('/random')
+  const app = choo()
+  const container = init('/random')
   app.route('*', function (state, emit) {
     t.pass()
     return h('div')
@@ -82,8 +84,8 @@ tape('router should support a default route', function (t) {
 
 tape('enabling hash routing should treat hashes as slashes', function (t) {
   t.plan(1)
-  var app = choo({ hash: true })
-  var container = init('/account#security')
+  const app = choo({ hash: true })
+  const container = init('/account#security')
   app.route('/account/security', function (state, emit) {
     t.pass()
     return h('div')
@@ -93,8 +95,8 @@ tape('enabling hash routing should treat hashes as slashes', function (t) {
 
 tape('router should ignore hashes by default', function (t) {
   t.plan(1)
-  var app = choo()
-  var container = init('/account#security')
+  const app = choo()
+  const container = init('/account#security')
   app.route('/account', function (state, emit) {
     t.pass()
     return h('div')
@@ -106,8 +108,8 @@ tape('router should ignore hashes by default', function (t) {
 
 tape('state should include events', function (t) {
   t.plan(2)
-  var app = choo()
-  var container = init()
+  const app = choo()
+  const container = init()
   app.route('/', function (state, emit) {
     t.ok(state.hasOwnProperty('events'), 'state has event property')
     t.ok(Object.keys(state.events).length > 0, 'events object has keys')
@@ -118,10 +120,10 @@ tape('state should include events', function (t) {
 
 tape('state should include location on render', function (t) {
   t.plan(6)
-  var app = choo()
-  var container = init('/foo/bar/file.txt?bin=baz')
+  const app = choo()
+  const container = init('/foo/bar/file.txt?bin=baz')
   app.route('/:first/:second/*', function (state, emit) {
-    var params = { first: 'foo', second: 'bar', wildcard: 'file.txt' }
+    const params = { first: 'foo', second: 'bar', wildcard: 'file.txt' }
     t.equal(state.href, '/foo/bar/file.txt', 'state has href')
     t.equal(state.route, ':first/:second/*', 'state has route')
     t.ok(state.hasOwnProperty('params'), 'state has params')
@@ -135,8 +137,8 @@ tape('state should include location on render', function (t) {
 
 tape('state should include location on store init', function (t) {
   t.plan(6)
-  var app = choo()
-  var container = init('/foo/bar/file.txt?bin=baz')
+  const app = choo()
+  const container = init('/foo/bar/file.txt?bin=baz')
   app.use(store)
   app.route('/:first/:second/*', function (state, emit) {
     return h('div')
@@ -144,7 +146,7 @@ tape('state should include location on store init', function (t) {
   app.mount(container)
 
   function store (state, emit) {
-    var params = { first: 'foo', second: 'bar', wildcard: 'file.txt' }
+    const params = { first: 'foo', second: 'bar', wildcard: 'file.txt' }
     t.equal(state.href, '/foo/bar/file.txt', 'state has href')
     t.equal(state.route, ':first/:second/*', 'state has route')
     t.ok(state.hasOwnProperty('params'), 'state has params')
@@ -157,8 +159,8 @@ tape('state should include location on store init', function (t) {
 tape('state should include title', function (t) {
   t.plan(3)
   document.title = 'foo'
-  var app = choo()
-  var container = init()
+  const app = choo()
+  const container = init()
   t.equal(app.state.title, 'foo', 'title is match')
   app.use(function (state, emitter) {
     emitter.on(state.events.DOMTITLECHANGE, function (title) {
@@ -179,7 +181,7 @@ function init (location, type) {
   location = location ? location.split('#') : ['/', '']
   window.history.replaceState({}, document.title, location[0])
   window.location.hash = location[1] || ''
-  var container = document.createElement(type || 'div')
+  const container = document.createElement(type || 'div')
   document.body.appendChild(container)
   return container
 }

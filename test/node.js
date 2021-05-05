@@ -1,21 +1,23 @@
-var tape = require('tape')
-var h = require('hyperscript')
+const tape = require('tape')
+const h = require('hyperscript')
 
-var choo = require('..')
+const choo = require('..')
+
+/* eslint-disable no-prototype-builtins */
 
 tape('should render on the server with hyperscript', function (t) {
-  var app = choo()
+  const app = choo()
   app.route('/', function (state, emit) {
     return h('p', h('strong', 'Hello filthy planet'))
   })
-  var res = app.toString('/')
-  var exp = '<p><strong>Hello filthy planet</strong></p>'
+  const res = app.toString('/')
+  const exp = '<p><strong>Hello filthy planet</strong></p>'
   t.equal(res.toString().trim(), exp, 'result was OK')
   t.end()
 })
 
 tape('should expose a public API', function (t) {
-  var app = choo()
+  const app = choo()
 
   t.equal(typeof app.route, 'function', 'app.route prototype method exists')
   t.equal(typeof app.toString, 'function', 'app.toString prototype method exists')
@@ -31,7 +33,7 @@ tape('should expose a public API', function (t) {
 })
 
 tape('should enable history and hash by defaut', function (t) {
-  var app = choo()
+  const app = choo()
   t.true(app._historyEnabled, 'history enabled')
   t.true(app._hrefEnabled, 'href enabled')
   t.end()
@@ -39,7 +41,7 @@ tape('should enable history and hash by defaut', function (t) {
 
 tape('router should pass state and emit to view', function (t) {
   t.plan(2)
-  var app = choo()
+  const app = choo()
   app.route('/', function (state, emit) {
     t.equal(typeof state, 'object', 'state is an object')
     t.equal(typeof emit, 'function', 'emit is a function')
@@ -51,7 +53,7 @@ tape('router should pass state and emit to view', function (t) {
 
 tape('router should support a default route', function (t) {
   t.plan(1)
-  var app = choo()
+  const app = choo()
   app.route('*', function (state, emit) {
     t.pass()
     return h('div')
@@ -62,7 +64,7 @@ tape('router should support a default route', function (t) {
 
 tape('enabling hash routing should treat hashes as slashes', function (t) {
   t.plan(1)
-  var app = choo({ hash: true })
+  const app = choo({ hash: true })
   app.route('/account/security', function (state, emit) {
     t.pass()
     return h('div')
@@ -73,7 +75,7 @@ tape('enabling hash routing should treat hashes as slashes', function (t) {
 
 tape('router should ignore hashes by default', function (t) {
   t.plan(1)
-  var app = choo()
+  const app = choo()
   app.route('/account', function (state, emit) {
     t.pass()
     return h('div')
@@ -86,7 +88,7 @@ tape('router should ignore hashes by default', function (t) {
 
 tape('state should include events', function (t) {
   t.plan(2)
-  var app = choo()
+  const app = choo()
   app.route('/', function (state, emit) {
     t.ok(state.hasOwnProperty('events'), 'state has event property')
     t.ok(Object.keys(state.events).length > 0, 'events object has keys')
@@ -98,9 +100,9 @@ tape('state should include events', function (t) {
 
 tape('state should include location on render', function (t) {
   t.plan(6)
-  var app = choo()
+  const app = choo()
   app.route('/:first/:second/*', function (state, emit) {
-    var params = { first: 'foo', second: 'bar', wildcard: 'file.txt' }
+    const params = { first: 'foo', second: 'bar', wildcard: 'file.txt' }
     t.equal(state.href, '/foo/bar/file.txt', 'state has href')
     t.equal(state.route, ':first/:second/*', 'state has route')
     t.ok(state.hasOwnProperty('params'), 'state has params')
@@ -115,7 +117,7 @@ tape('state should include location on render', function (t) {
 
 tape('state should include location on store init', function (t) {
   t.plan(6)
-  var app = choo()
+  const app = choo()
   app.use(store)
   app.route('/:first/:second/*', function (state, emit) {
     return h('div')
@@ -123,7 +125,7 @@ tape('state should include location on store init', function (t) {
   app.toString('/foo/bar/file.txt?bin=baz')
 
   function store (state, emit) {
-    var params = { first: 'foo', second: 'bar', wildcard: 'file.txt' }
+    const params = { first: 'foo', second: 'bar', wildcard: 'file.txt' }
     t.equal(state.href, '/foo/bar/file.txt', 'state has href')
     t.equal(state.route, ':first/:second/*', 'state has route')
     t.ok(state.hasOwnProperty('params'), 'state has params')
@@ -136,18 +138,18 @@ tape('state should include location on store init', function (t) {
 tape('state should not mutate on toString', function (t) {
   t.plan(6)
 
-  var app = choo()
+  const app = choo()
   app.use(store)
 
-  var routes = ['foo', 'bar']
-  var states = routes.map(function (route) {
-    var state = {}
+  const routes = ['foo', 'bar']
+  const states = routes.map(function (route) {
+    const state = {}
     app.route(`/${route}`, view)
     app.toString(`/${route}`, state)
     return state
   })
 
-  for (var i = 0, len = routes.length; i < len; i++) {
+  for (let i = 0, len = routes.length; i < len; i++) {
     t.equal(states[i].test, routes[i], 'store was used')
     t.equal(states[i].title, routes[i], 'title was added to state')
   }
