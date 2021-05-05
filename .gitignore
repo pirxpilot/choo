@@ -1,6 +1,5 @@
 node_modules/
 coverage/
-dist/
 tmp/
 .sauce-credentials.json
 sauce_connect.log
