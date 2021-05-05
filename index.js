@@ -29,7 +29,7 @@ const hasWindow = typeof window !== 'undefined'
 function choo (opts = {}) {
   const timing = nanotiming('choo.constructor')
 
-  assert.equal(typeof opts, 'object', 'choo: opts should be type object')
+  assert(typeof opts === 'object', 'choo: opts should be type object')
 
   const {
     history: historyEnabled = true,
@@ -64,7 +64,7 @@ function choo (opts = {}) {
 
   function ondomtitlechange (state) {
     emitter.prependListener(EVENTS.DOMTITLECHANGE, title => {
-      assert.equal(typeof title, 'string', 'EVENTS.DOMTitleChange: title should be type string')
+      assert(typeof title === 'string', 'EVENTS.DOMTitleChange: title should be type string')
       state.title = title
       if (hasWindow) document.title = title
     })
@@ -88,14 +88,14 @@ function choo (opts = {}) {
 
   function route (route, handler) {
     const routeTiming = nanotiming(`choo.route('${route}')`)
-    assert.equal(typeof route, 'string', 'choo.route: route should be type string')
-    assert.equal(typeof handler, 'function', 'choo.handler: route should be type function')
+    assert(typeof route === 'string', 'choo.route: route should be type string')
+    assert(typeof handler === 'function', 'choo.handler: route should be type function')
     router.on(route, handler)
     routeTiming()
   }
 
   function use (cb) {
-    assert.equal(typeof cb, 'function', 'choo.use: cb should be type function')
+    assert(typeof cb === 'function', 'choo.use: cb should be type function')
     stores.push(state => {
       const msg = cb.storeName ? `choo.use(${cb.storeName})` : 'choo.use'
       const endTiming = nanotiming(msg)
@@ -105,7 +105,7 @@ function choo (opts = {}) {
   }
 
   function start () {
-    assert.equal(typeof window, 'object', 'choo.start: window was not found. .start() must be called in a browser, use .toString() if running in Node')
+    assert(typeof window === 'object', 'choo.start: window was not found. .start() must be called in a browser, use .toString() if running in Node')
     const startTiming = nanotiming('choo.start')
 
     if (historyEnabled) {
@@ -120,13 +120,13 @@ function choo (opts = {}) {
       emitter.prependListener(EVENTS.POPSTATE, () => emit(EVENTS.NAVIGATE))
 
       emitter.prependListener(EVENTS.PUSHSTATE, href => {
-        assert.equal(typeof href, 'string', 'EVENTS.pushState: href should be type string')
+        assert(typeof href === 'string', 'EVENTS.pushState: href should be type string')
         window.history.pushState(HISTORY_OBJECT, null, href)
         emit(EVENTS.NAVIGATE)
       })
 
       emitter.prependListener(EVENTS.REPLACESTATE, href => {
-        assert.equal(typeof href, 'string', 'EVENTS.replaceState: href should be type string')
+        assert(typeof href === 'string', 'EVENTS.replaceState: href should be type string')
         window.history.replaceState(HISTORY_OBJECT, null, href)
         emit(EVENTS.NAVIGATE)
       })
@@ -151,14 +151,14 @@ function choo (opts = {}) {
     stores.forEach(initStore => initStore(state))
 
     tree = prerender(state)
-    assert.ok(tree, `choo.start: no valid DOM node returned for location ${state.href}`)
+    assert(tree, `choo.start: no valid DOM node returned for location ${state.href}`)
 
     emitter.prependListener(EVENTS.RENDER, nanoraf(() => {
       const renderTiming = nanotiming('choo.render')
       const newTree = prerender(state)
-      assert.ok(newTree, `choo.render: no valid DOM node returned for location ${state.href}`)
+      assert(newTree, `choo.render: no valid DOM node returned for location ${state.href}`)
 
-      assert.equal(tree.nodeName, newTree.nodeName, `choo.render: The target node <${tree.nodeName.toLowerCase()}> is not the same type as the new node <${newTree.nodeName.toLowerCase()}>.`)
+      assert(tree.nodeName === newTree.nodeName, `choo.render: The target node <${tree.nodeName.toLowerCase()}> is not the same type as the new node <${newTree.nodeName.toLowerCase()}>.`)
 
       const morphTiming = nanotiming('choo.morph')
       nanomorph(tree, newTree)
@@ -179,12 +179,12 @@ function choo (opts = {}) {
   function mount (selector) {
     const mountTiming = nanotiming(`choo.mount('${selector}')`)
     if (typeof window !== 'object') {
-      assert.ok(typeof selector === 'string', 'choo.mount: selector should be type String')
+      assert(typeof selector === 'string', 'choo.mount: selector should be type String')
       mountTiming()
       return
     }
 
-    assert.ok(typeof selector === 'string' || typeof selector === 'object', 'choo.mount: selector should be type String or HTMLElement')
+    assert(typeof selector === 'string' || typeof selector === 'object', 'choo.mount: selector should be type String or HTMLElement')
 
     documentReady(() => {
       const renderTiming = nanotiming('choo.render')
@@ -195,8 +195,8 @@ function choo (opts = {}) {
         tree = selector
       }
 
-      assert.ok(tree, `choo.mount: could not query selector: ${selector}`)
-      assert.equal(tree.nodeName, newTree.nodeName, `choo.mount: The target node <${tree.nodeName.toLowerCase()}> is not the same type as the new node <${newTree.nodeName.toLowerCase()}>.`)
+      assert(tree, `choo.mount: could not query selector: ${selector}`)
+      assert(tree.nodeName === newTree.nodeName, `choo.mount: The target node <${tree.nodeName.toLowerCase()}> is not the same type as the new node <${newTree.nodeName.toLowerCase()}>.`)
 
       const morphTiming = nanotiming('choo.morph')
       nanomorph(tree, newTree)
@@ -211,9 +211,9 @@ function choo (opts = {}) {
     state.components = state.components || {}
     state.events = Object.assign({}, state.events, EVENTS)
 
-    assert.notEqual(typeof window, 'object', 'choo.mount: window was found. .toString() must be called in Node, use .start() or .mount() if running in the browser')
-    assert.equal(typeof location, 'string', 'choo.toString: location should be type string')
-    assert.equal(typeof state, 'object', 'choo.toString: state should be type object')
+    assert(typeof window !== 'object', 'choo.mount: window was found. .toString() must be called in Node, use .start() or .mount() if running in the browser')
+    assert(typeof location === 'string', 'choo.toString: location should be type string')
+    assert(typeof state === 'object', 'choo.toString: state should be type object')
 
     matchRoute(state, location)
     emitter.removeAllListeners()
@@ -222,7 +222,7 @@ function choo (opts = {}) {
     })
 
     const html = prerender(state)
-    assert.ok(html, `choo.toString: no valid value returned for the route ${location}`)
+    assert(html, `choo.toString: no valid value returned for the route ${location}`)
     assert(!Array.isArray(html), `choo.toString: return value was an array for the route ${location}`)
     return typeof html.outerHTML === 'string' ? html.outerHTML : html.toString()
   }
