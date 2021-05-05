@@ -2,18 +2,9 @@ BIN = node_modules/.bin
 
 all: check
 
-build:
-	mkdir -p dist
-	$(BIN)/browserify index -s Choo -p bundle-collapser/plugin > dist/bundle.js
-	$(BIN)/browserify index -s Choo -p tinyify > dist/bundle.min.js
-	cat dist/bundle.min.js | gzip --best --stdout | wc -c | pretty-bytes
-
 deps:
 	$(BIN)/dependency-check --entry ./html/index.js .
 	$(BIN)/dependency-check . --extra --no-dev --entry ./html/index.js --entry ./component/index.js -i nanoassert
-
-inspect:
-	$(BIN)/browserify --full-paths index -p tinyify | discify --open
 
 lint:
 	$(BIN)/standard
