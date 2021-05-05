@@ -1,8 +1,6 @@
 var tape = require('tape')
 var h = require('hyperscript')
 
-var html = require('../html')
-var raw = require('../html/raw')
 var choo = require('..')
 
 tape('should mount in the DOM', function (t) {
@@ -15,9 +13,9 @@ tape('should mount in the DOM', function (t) {
       var exp = '<p><strong>Hello filthy planet</strong></p>'
       t.equal(container.outerHTML, exp, 'result was OK')
     })
-    return html`
-      <p>${raw(strong)}</p>
-    `
+    var p = document.createElement('p')
+    p.innerHTML = strong
+    return p
   })
   app.mount(container)
 })
@@ -66,7 +64,7 @@ tape('router should pass state and emit to view', function (t) {
   app.route('/', function (state, emit) {
     t.equal(typeof state, 'object', 'state is an object')
     t.equal(typeof emit, 'function', 'emit is a function')
-    return html`<div></div>`
+    return h('div')
   })
   app.mount(container)
 })
@@ -77,7 +75,7 @@ tape('router should support a default route', function (t) {
   var container = init('/random')
   app.route('*', function (state, emit) {
     t.pass()
-    return html`<div></div>`
+    return h('div')
   })
   app.mount(container)
 })
@@ -88,7 +86,7 @@ tape('enabling hash routing should treat hashes as slashes', function (t) {
   var container = init('/account#security')
   app.route('/account/security', function (state, emit) {
     t.pass()
-    return html`<div></div>`
+    return h('div')
   })
   app.mount(container)
 })
@@ -99,7 +97,7 @@ tape('router should ignore hashes by default', function (t) {
   var container = init('/account#security')
   app.route('/account', function (state, emit) {
     t.pass()
-    return html`<div></div>`
+    return h('div')
   })
   app.mount(container)
 })
@@ -113,7 +111,7 @@ tape('state should include events', function (t) {
   app.route('/', function (state, emit) {
     t.ok(state.hasOwnProperty('events'), 'state has event property')
     t.ok(Object.keys(state.events).length > 0, 'events object has keys')
-    return html`<div></div>`
+    return h('div')
   })
   app.mount(container)
 })
@@ -130,7 +128,7 @@ tape('state should include location on render', function (t) {
     t.deepEqual(state.params, params, 'params match')
     t.ok(state.hasOwnProperty('query'), 'state has query')
     t.deepEqual(state.query, { bin: 'baz' }, 'query match')
-    return html`<div></div>`
+    return h('div')
   })
   app.mount(container)
 })
@@ -141,7 +139,7 @@ tape('state should include location on store init', function (t) {
   var container = init('/foo/bar/file.txt?bin=baz')
   app.use(store)
   app.route('/:first/:second/*', function (state, emit) {
-    return html`<div></div>`
+    return h('div')
   })
   app.mount(container)
 
@@ -170,7 +168,7 @@ tape('state should include title', function (t) {
   })
   app.route('/', function (state, emit) {
     emit(state.events.DOMTITLECHANGE, 'bar')
-    return html`<div></div>`
+    return h('div')
   })
   app.mount(container)
 })
