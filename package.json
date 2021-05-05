@@ -10,8 +10,7 @@
     "html/raw.js",
     "html/index.d.ts",
     "component/cache.js",
-    "component/index.js",
-    "example"
+    "component/index.js"
   ],
   "browser": {
     "assert": "nanoassert"
@@ -49,7 +48,6 @@
     "browserify": "^16.2.2",
     "dependency-check": "^3.1.0",
     "hyperscript": "^2.0.2",
-    "spok": "^0.9.1",
     "standard": "^11.0.1",
     "tape": "^4.6.3",
     "tape-run": "^6.0.0",
