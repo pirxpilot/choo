@@ -2,7 +2,7 @@ const scrollToAnchor = require('scroll-to-anchor')
 const documentReady = require('document-ready')
 const nanotiming = require('nanotiming')
 const nanorouter = require('nanorouter')
-const nanomorph = require('nanomorph')
+const nanomorph = require('@pirxpilot/nanomorph')
 const nanoquery = require('nanoquery')
 const nanohref = require('nanohref')
 const nanoraf = require('nanoraf')
@@ -161,7 +161,7 @@ function choo (opts = {}) {
       assert(tree.nodeName === newTree.nodeName, `choo.render: The target node <${tree.nodeName.toLowerCase()}> is not the same type as the new node <${newTree.nodeName.toLowerCase()}>.`)
 
       const morphTiming = nanotiming('choo.morph')
-      nanomorph(tree, newTree)
+      nanomorph(tree, newTree, opts.morph)
       morphTiming()
 
       renderTiming()
