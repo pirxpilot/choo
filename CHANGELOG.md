@@ -1,4 +1,10 @@
 
+1.0.1 / 2022-05-27
+==================
+
+ * add support for passing options to nanomorph
+ * use @pirxpilot/nanomorph module
+
 1.0.0 / 2021-05-05
 ==================
 
