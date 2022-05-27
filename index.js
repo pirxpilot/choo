@@ -161,7 +161,7 @@ function choo (opts = {}) {
       assert(tree.nodeName === newTree.nodeName, `choo.render: The target node <${tree.nodeName.toLowerCase()}> is not the same type as the new node <${newTree.nodeName.toLowerCase()}>.`)
 
       const morphTiming = nanotiming('choo.morph')
-      nanomorph(tree, newTree)
+      nanomorph(tree, newTree, opts.morph)
       morphTiming()
 
       renderTiming()
