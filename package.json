@@ -24,11 +24,11 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@pirxpilot/nanomorph": "~1",
     "document-ready": "^2.0.1",
     "nanoassert": "^1.1.0",
     "nanobus": "^4.4.0",
     "nanohref": "^3.0.0",
-    "nanomorph": "^5.1.2",
     "nanoquery": "^1.1.0",
     "nanoraf": "^3.0.0",
     "nanorouter": "^4.0.0",
