@@ -1,0 +1,16 @@
+name: check
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+      - run: yarn install
+      - run: make test-node
+      - run: xvfb-run --auto-servernum make test-browser
+        #- uses: GabrielBB/xvfb-action@v1
+        #with:
+        #  run: make check

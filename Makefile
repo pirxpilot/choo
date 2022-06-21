@@ -8,15 +8,12 @@ deps:
 lint:
 	$(BIN)/standard
 
-check: lint deps test-types test-node test-browser
-
-test-types:
-	$(BIN)/tsd
+check: lint deps test-node test-browser
 
 test-node:
-	$(BIN)/tape test/node.js | tap-format-spec
+	$(BIN)/tape test/node.js
 
 test-browser:
-	$(BIN)/browserify test/browser.js | tape-run | tap-format-spec
+	$(BIN)/browserify test/browser.js | $(BIN)/tape-run
 
 .PHONY: check lint all inspect start test-type test-node test-browser deps build

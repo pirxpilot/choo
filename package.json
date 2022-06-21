@@ -35,20 +35,11 @@
     "scroll-to-anchor": "^1.0.0"
   },
   "devDependencies": {
-    "@tap-format/spec": "^0.2.0",
     "browserify": "^17.0.0",
     "dependency-check": "^4.1.0",
     "hyperscript": "^2.0.2",
-    "standard": "^16.0.3",
+    "standard": "^17.0.0",
     "tape": "^5.2.2",
-    "tape-run": "^9.0.0",
-    "tsd": "^0.14.0"
-  },
-  "tsd": {
-    "compilerOptions": {
-      "lib": [
-        "DOM"
-      ]
-    }
+    "tape-run": "^10.0.0"
   }
 }
