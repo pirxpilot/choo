@@ -35,7 +35,6 @@
     "scroll-to-anchor": "^1.0.0"
   },
   "devDependencies": {
-    "@tap-format/spec": "^0.2.0",
     "browserify": "^17.0.0",
     "dependency-check": "^4.1.0",
     "hyperscript": "^2.0.2",
