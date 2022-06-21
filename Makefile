@@ -8,10 +8,7 @@ deps:
 lint:
 	$(BIN)/standard
 
-check: lint deps test-types test-node test-browser
-
-test-types:
-	$(BIN)/tsd
+check: lint deps test-node test-browser
 
 test-node:
 	$(BIN)/tape test/node.js
