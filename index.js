@@ -3,7 +3,6 @@ const documentReady = require('document-ready')
 const nanotiming = require('nanotiming')
 const nanorouter = require('nanorouter')
 const nanomorph = require('@pirxpilot/nanomorph')
-const nanoquery = require('nanoquery')
 const nanohref = require('nanohref')
 const nanoraf = require('nanoraf')
 const nanobus = require('nanobus')
@@ -233,7 +232,7 @@ function choo (opts = {}) {
     if (locationOverride) {
       location = locationOverride.replace(/\?.+$/, '').replace(/\/$/, '')
       if (!hashEnabled) location = location.replace(/#.+$/, '')
-      queryString = locationOverride
+      queryString = locationOverride.replace(/^.+?\?/, '')
     } else {
       location = window.location.pathname.replace(/\/$/, '')
       if (hashEnabled) location += window.location.hash.replace(/^#/, '/')
@@ -242,7 +241,7 @@ function choo (opts = {}) {
     const matched = router.match(location)
     handler = matched.cb
     state.href = location
-    state.query = nanoquery(queryString)
+    state.query = Object.fromEntries(new URLSearchParams(queryString))
     state.route = matched.route
     state.params = matched.params
   }
