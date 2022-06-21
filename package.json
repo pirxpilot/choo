@@ -40,6 +40,6 @@
     "hyperscript": "^2.0.2",
     "standard": "^17.0.0",
     "tape": "^5.2.2",
-    "tape-run": "^9.0.0"
+    "tape-run": "^10.0.0"
   }
 }
