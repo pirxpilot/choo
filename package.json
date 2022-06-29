@@ -8,7 +8,7 @@
     "index.d.ts"
   ],
   "browser": {
-    "assert": "nanoassert"
+    "assert": "@pirxpilot/nanoassert"
   },
   "scripts": {
     "test": "make check"
@@ -24,9 +24,9 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@pirxpilot/nanoassert": "~1",
     "@pirxpilot/nanomorph": "~1",
     "document-ready": "^2.0.1",
-    "nanoassert": "^1.1.0",
     "nanobus": "^4.4.0",
     "nanohref": "^3.0.0",
     "nanoraf": "^3.0.0",

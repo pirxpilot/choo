@@ -5,6 +5,8 @@ const choo = require('..')
 
 /* eslint-disable no-prototype-builtins */
 
+globalThis.DEBUG = true
+
 tape('should mount in the DOM', function (t) {
   t.plan(1)
   const app = choo()
