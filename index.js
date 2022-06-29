@@ -4,7 +4,7 @@ const nanotiming = require('nanotiming')
 const nanorouter = require('nanorouter')
 const nanomorph = require('@pirxpilot/nanomorph')
 const nanohref = require('nanohref')
-const nanoraf = require('nanoraf')
+const nanoraf = require('@pirxpilot/nanoraf')
 const nanobus = require('nanobus')
 const assert = require('assert')
 
