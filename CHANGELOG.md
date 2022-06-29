@@ -1,4 +1,10 @@
 
+1.0.3 / 2022-06-29
+==================
+
+ * replace nanoassert with @pirxpilot/nanoassert
+ * switch from Travis CI to gihub actions
+
 1.0.2 / 2022-06-21
 ==================
 
