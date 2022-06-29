@@ -1,6 +1,6 @@
 const scrollToAnchor = require('scroll-to-anchor')
 const documentReady = require('document-ready')
-const nanotiming = require('nanotiming')
+const nanotiming = require('@pirxpilot/nanotiming')
 const nanorouter = require('nanorouter')
 const nanomorph = require('@pirxpilot/nanomorph')
 const nanohref = require('@pirxpilot/nanohref')
