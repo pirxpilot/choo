@@ -5,7 +5,7 @@ const nanorouter = require('nanorouter')
 const nanomorph = require('@pirxpilot/nanomorph')
 const nanohref = require('@pirxpilot/nanohref')
 const nanoraf = require('@pirxpilot/nanoraf')
-const nanobus = require('nanobus')
+const nanobus = require('@pirxpilot/nanobus')
 const assert = require('assert')
 
 module.exports = choo
