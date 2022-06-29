@@ -1,6 +1,6 @@
 {
   "name": "@pirxpilot/choo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A 4kb framework for creating sturdy frontend applications",
   "main": "index.js",
   "files": [

@@ -1,4 +1,13 @@
 
+1.0.4 / 2022-06-29
+==================
+
+ * replace `nanorouter` with `@pirxpilot/nanorouter`
+ * replace `nanobus` with `@pirxpilot/nanobus`
+ * replace `nanotiming` with `@pirxpilot/nanotiming`
+ * replace `nanohref` with `@pirxpilot/nanohref`
+ * replace "nanoraf" with "@pirxpilot/nanoraf"
+
 1.0.3 / 2022-06-29
 ==================
 
