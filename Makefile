@@ -3,7 +3,7 @@ BIN = node_modules/.bin
 all: check
 
 deps:
-	$(BIN)/dependency-check --no-dev index.js --ignore-module nanoassert
+	$(BIN)/dependency-check --no-dev index.js --ignore-module @pirxpilot/nanoassert
 
 lint:
 	$(BIN)/standard
