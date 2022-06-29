@@ -293,7 +293,7 @@ both hashes in URLs and anchor links on the page is generally not recommended.
 
 ### Following links
 By default all clicks on `<a>` tags are handled by the router through the
-[nanohref](https://github.com/choojs/nanohref) module. This can be
+[nanohref](https://github.com/pirxpilot/nanohref) module. This can be
 disabled application-wide by passing `{ href: false }` to the application
 constructor. The event is not handled under the following conditions:
 - the click event had `.preventDefault()` called on it
