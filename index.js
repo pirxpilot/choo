@@ -1,11 +1,11 @@
 const scrollToAnchor = require('scroll-to-anchor')
 const documentReady = require('document-ready')
-const nanotiming = require('nanotiming')
-const nanorouter = require('nanorouter')
+const nanotiming = require('@pirxpilot/nanotiming')
+const nanorouter = require('@pirxpilot/nanorouter')
 const nanomorph = require('@pirxpilot/nanomorph')
-const nanohref = require('nanohref')
-const nanoraf = require('nanoraf')
-const nanobus = require('nanobus')
+const nanohref = require('@pirxpilot/nanohref')
+const nanoraf = require('@pirxpilot/nanoraf')
+const nanobus = require('@pirxpilot/nanobus')
 const assert = require('assert')
 
 module.exports = choo

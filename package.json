@@ -25,13 +25,13 @@
   "license": "MIT",
   "dependencies": {
     "@pirxpilot/nanoassert": "~1",
+    "@pirxpilot/nanobus": "^1.0.0",
+    "@pirxpilot/nanohref": "^1.0.0",
     "@pirxpilot/nanomorph": "~1",
+    "@pirxpilot/nanoraf": "^1.0.0",
+    "@pirxpilot/nanorouter": "^1.0.0",
+    "@pirxpilot/nanotiming": "^1.0.0",
     "document-ready": "^2.0.1",
-    "nanobus": "^4.4.0",
-    "nanohref": "^3.0.0",
-    "nanoraf": "^3.0.0",
-    "nanorouter": "^4.0.0",
-    "nanotiming": "^7.0.0",
     "scroll-to-anchor": "^1.0.0"
   },
   "devDependencies": {
