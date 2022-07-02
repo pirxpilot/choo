@@ -14,6 +14,6 @@ test-node:
 	$(BIN)/tape test/node.js
 
 test-browser:
-	$(BIN)/browserify test/browser.js | $(BIN)/tape-run
+	$(BIN)/tape test/browser.js
 
-.PHONY: check lint all inspect start test-type test-node test-browser deps build
+.PHONY: check lint all test-node test-browser deps build

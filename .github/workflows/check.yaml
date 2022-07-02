@@ -9,8 +9,4 @@ jobs:
         with:
           node-version: 'lts/*'
       - run: yarn install
-      - run: make test-node
-      - run: xvfb-run --auto-servernum make test-browser
-        #- uses: GabrielBB/xvfb-action@v1
-        #with:
-        #  run: make check
+      - run: make check

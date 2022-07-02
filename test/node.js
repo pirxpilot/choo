@@ -1,20 +1,8 @@
 const tape = require('tape')
-const h = require('hyperscript')
 
 const choo = require('..')
 
 /* eslint-disable no-prototype-builtins */
-
-tape('should render on the server with hyperscript', function (t) {
-  const app = choo()
-  app.route('/', function (state, emit) {
-    return h('p', h('strong', 'Hello filthy planet'))
-  })
-  const res = app.toString('/')
-  const exp = '<p><strong>Hello filthy planet</strong></p>'
-  t.equal(res.toString().trim(), exp, 'result was OK')
-  t.end()
-})
 
 tape('should expose a public API', function (t) {
   const app = choo()
@@ -45,7 +33,7 @@ tape('router should pass state and emit to view', function (t) {
   app.route('/', function (state, emit) {
     t.equal(typeof state, 'object', 'state is an object')
     t.equal(typeof emit, 'function', 'emit is a function')
-    return h('div')
+    return '<div></div>'
   })
   app.toString('/')
   t.end()
@@ -56,7 +44,7 @@ tape('router should support a default route', function (t) {
   const app = choo()
   app.route('*', function (state, emit) {
     t.pass()
-    return h('div')
+    return '<div></div>'
   })
   app.toString('/random')
   t.end()
@@ -67,7 +55,7 @@ tape('enabling hash routing should treat hashes as slashes', function (t) {
   const app = choo({ hash: true })
   app.route('/account/security', function (state, emit) {
     t.pass()
-    return h('div')
+    return '<div></div>'
   })
   app.toString('/account#security')
   t.end()
@@ -78,7 +66,7 @@ tape('router should ignore hashes by default', function (t) {
   const app = choo()
   app.route('/account', function (state, emit) {
     t.pass()
-    return h('div')
+    return '<div></div>'
   })
   app.toString('/account#security')
   t.end()
@@ -92,7 +80,7 @@ tape('state should include events', function (t) {
   app.route('/', function (state, emit) {
     t.ok(state.hasOwnProperty('events'), 'state has event property')
     t.ok(Object.keys(state.events).length > 0, 'events object has keys')
-    return h('div')
+    return '<div></div>'
   })
   app.toString('/')
   t.end()
@@ -109,7 +97,7 @@ tape('state should include location on render', function (t) {
     t.deepEqual(state.params, params, 'params match')
     t.ok(state.hasOwnProperty('query'), 'state has query')
     t.deepLooseEqual(state.query, { bin: 'baz' }, 'query match')
-    return h('div')
+    return '<div></div>'
   })
   app.toString('/foo/bar/file.txt?bin=baz')
   t.end()
@@ -120,7 +108,7 @@ tape('state should include location on store init', function (t) {
   const app = choo()
   app.use(store)
   app.route('/:first/:second/*', function (state, emit) {
-    return h('div')
+    return '<div></div>'
   })
   app.toString('/foo/bar/file.txt?bin=baz')
 
@@ -165,6 +153,6 @@ tape('state should not mutate on toString', function (t) {
   function view (state, emit) {
     emit('test', state.route)
     emit(state.events.DOMTITLECHANGE, state.route)
-    return h('body', `Hello ${state.route}`)
+    return `<body>Hello ${state.route}</body>`
   }
 })
