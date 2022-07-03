@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "browser-env": "^3.3.0",
-    "dependency-check": "^4.1.0",
     "standard": "^17.0.0",
     "tape": "^5.2.2"
   },
