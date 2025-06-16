@@ -23,7 +23,7 @@ MIT © [Damian Krzeminski](https://pirxpilot.me)
 [npm-url]: https://npmjs.org/package/@pirxpilot/choo
 
 [build-url]: https://github.com/pirxpilot/choo/actions/workflows/check.yaml
-[build-image]: https://img.shields.io/github/workflow/status/pirxpilot/choo/check
+[build-image]: https://img.shields.io/github/actions/workflow/status/pirxpilot/choo/check.yaml?branch=main
 
 [deps-image]: https://img.shields.io/librariesio/release/npm/@pirxpilot/choo
 [deps-url]: https://libraries.io/npm/@pirxpilot%2Fchoo

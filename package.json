@@ -13,7 +13,10 @@
   "scripts": {
     "test": "make check"
   },
-  "repository": "pirxpilot/choo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pirxpilot/choo.git"
+  },
   "keywords": [
     "client",
     "frontend",
@@ -35,8 +38,8 @@
     "scroll-to-anchor": "^1.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "browser-env": "^3.3.0",
-    "standard": "^17.0.0",
     "tape": "^5.2.2"
   },
   "resolutions": {

@@ -1,16 +1,15 @@
-BIN = node_modules/.bin
-
-all: check
+check: lint test
 
 lint:
-	$(BIN)/standard
+	./node_modules/.bin/biome ci
 
-check: lint test-node test-browser
+format:
+	./node_modules/.bin/biome check --fix
 
-test-node:
-	$(BIN)/tape test/node.js
+test:
+	node --test $(TEST_OPTS)
 
-test-browser:
-	$(BIN)/tape test/browser.js
+test-cov: TEST_OPTS := --experimental-test-coverage
+test-cov: test
 
-.PHONY: check lint all test-node test-browser deps build
+.PHONY: check format lint test test-cov
