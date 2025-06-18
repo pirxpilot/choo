@@ -1,12 +1,11 @@
-const be = require('browser-env');
+import test from 'node:test';
+import be from 'browser-env';
+import choo from '../index.js';
+
 be(['window', 'document'], {
   url: 'http://example.com',
   pretendToBeVisual: true
 });
-
-const test = require('node:test');
-
-const choo = require('..');
 
 globalThis.DEBUG = true;
 

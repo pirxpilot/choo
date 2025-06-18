@@ -2,7 +2,8 @@
   "name": "@pirxpilot/choo",
   "version": "1.0.6",
   "description": "A 4kb framework for creating sturdy frontend applications",
-  "main": "index.js",
+  "type": "module",
+  "exports": "./index.js",
   "files": [
     "index.js",
     "index.d.ts"

@@ -1,14 +1,12 @@
-const scrollToAnchor = require('scroll-to-anchor');
-const documentReady = require('document-ready');
-const nanotiming = require('@pirxpilot/nanotiming');
-const nanorouter = require('@pirxpilot/nanorouter');
-const nanomorph = require('@pirxpilot/nanomorph');
-const nanohref = require('@pirxpilot/nanohref');
-const nanoraf = require('@pirxpilot/nanoraf');
-const nanobus = require('@pirxpilot/nanobus');
-const assert = require('assert');
-
-module.exports = choo;
+import assert from 'assert';
+import nanobus from '@pirxpilot/nanobus';
+import nanohref from '@pirxpilot/nanohref';
+import nanomorph from '@pirxpilot/nanomorph';
+import nanoraf from '@pirxpilot/nanoraf';
+import nanorouter from '@pirxpilot/nanorouter';
+import nanotiming from '@pirxpilot/nanotiming';
+import documentReady from 'document-ready';
+import scrollToAnchor from 'scroll-to-anchor';
 
 const HISTORY_OBJECT = {};
 
@@ -23,9 +21,8 @@ const EVENTS = {
   RENDER: 'render'
 };
 
-const hasWindow = typeof window !== 'undefined';
-
-function choo(opts = {}) {
+export default function choo(opts = {}) {
+  const hasWindow = typeof window !== 'undefined';
   const timing = nanotiming('choo.constructor');
 
   assert(typeof opts === 'object', 'choo: opts should be type object');
