@@ -1,4 +1,4 @@
-import Nanobus = require('nanobus');
+import Nanobus = require('@pirxpilot/nanobus');
 
 export = Choo;
 
