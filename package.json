@@ -39,10 +39,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "browser-env": "^3.3.0",
-    "tape": "^5.2.2"
+    "browser-env": "^3.3.0"
   },
   "resolutions": {
-    "jsdom": "20.0.0"
+    "jsdom": "26.1.0"
   }
 }
