@@ -2,7 +2,8 @@
   "name": "@pirxpilot/choo",
   "version": "1.0.6",
   "description": "A 4kb framework for creating sturdy frontend applications",
-  "main": "index.js",
+  "type": "module",
+  "exports": "./index.js",
   "files": [
     "index.js",
     "index.d.ts"
@@ -28,11 +29,11 @@
   "license": "MIT",
   "dependencies": {
     "@pirxpilot/nanoassert": "~1",
-    "@pirxpilot/nanobus": "^1.0.0",
-    "@pirxpilot/nanohref": "^1.0.0",
-    "@pirxpilot/nanomorph": "~1",
+    "@pirxpilot/nanobus": "^2.0.0",
+    "@pirxpilot/nanohref": "^2.0.0",
+    "@pirxpilot/nanomorph": "~2",
     "@pirxpilot/nanoraf": "^1.0.0",
-    "@pirxpilot/nanorouter": "^1.0.0",
+    "@pirxpilot/nanorouter": "^2.0.0",
     "@pirxpilot/nanotiming": "^1.0.0",
     "document-ready": "^2.0.1",
     "scroll-to-anchor": "^1.0.0"

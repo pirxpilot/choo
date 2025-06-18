@@ -1,6 +1,5 @@
-const test = require('node:test');
-
-const choo = require('..');
+import test from 'node:test';
+import choo from '../index.js';
 
 test('should expose a public API', t => {
   const app = choo();
