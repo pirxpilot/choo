@@ -1,4 +1,10 @@
 
+2.0.0 / 2025-06-18
+==================
+
+ * update dependencies
+ * transition to ESM format
+
 1.0.6 / 2025-06-17
 ==================
 
