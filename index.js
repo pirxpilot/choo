@@ -227,7 +227,7 @@ export default function choo(opts = {}) {
   }
 
   function toString(location, state = {}) {
-    state.components = state.components || {};
+    state.components ??= {};
     state.events = Object.assign({}, state.events, EVENTS);
 
     assert(
