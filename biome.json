@@ -1,14 +1,19 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": true
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   },
   "vcs": {
+    "enabled": true,
+    "clientKind": "git",
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": true,
-    "ignore": ["package.json"]
+    "ignoreUnknown": true
   },
   "formatter": {
     "enabled": true,
@@ -22,40 +27,45 @@
       "arrowParentheses": "asNeeded"
     }
   },
+  "json": {
+    "formatter": {
+      "expand": "always"
+    }
+  },
   "linter": {
     "enabled": true,
+    "domains": {
+      "project": "recommended"
+    },
     "rules": {
       "recommended": true,
+      "correctness": {
+        "noUndeclaredDependencies": "error",
+        "noUndeclaredVariables": "error",
+        "noUnusedVariables": "error",
+        "useImportExtensions": "error",
+        "useJsonImportAttributes": "error"
+      },
       "complexity": {
         "noForEach": "off"
       },
-      "correctness": {
-        "noUndeclaredVariables": "error",
-        "noUnusedVariables": "error"
+      "style": {
+        "noUnusedTemplateLiteral": "error",
+        "noUselessElse": "error",
+        "useDefaultParameterLast": "error",
+        "useNodejsImportProtocol": "off",
+        "useNumberNamespace": "error",
+        "useSingleVarDeclarator": "error"
       },
       "performance": {
         "noDelete": "off"
       },
-      "style": {
-        "useNodejsImportProtocol": "off",
-        "noParameterAssign": "off"
-      },
       "suspicious": {
+        "noAssignInExpressions": "off",
+        "noExplicitAny": "off",
         "noShadowRestrictedNames": "off",
-        "noExplicitAny": "off"
+        "useIterableCallbackReturn": "off"
       }
     }
-  },
-  "overrides": [
-    {
-      "include": ["test"],
-      "linter": {
-        "rules": {
-          "style": {
-            "useNodejsImportProtocol": "error"
-          }
-        }
-      }
-    }
-  ]
+  }
 }

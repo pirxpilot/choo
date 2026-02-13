@@ -1,10 +1,10 @@
-import assert from 'assert';
 import nanobus from '@pirxpilot/nanobus';
 import nanohref from '@pirxpilot/nanohref';
 import nanomorph from '@pirxpilot/nanomorph';
 import nanoraf from '@pirxpilot/nanoraf';
 import nanorouter from '@pirxpilot/nanorouter';
 import nanotiming from '@pirxpilot/nanotiming';
+import assert from 'assert';
 import documentReady from 'document-ready';
 import scrollToAnchor from 'scroll-to-anchor';
 
