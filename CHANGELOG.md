@@ -1,4 +1,10 @@
 
+2.0.1 / 2026-02-13
+==================
+
+ * upgrade `biome` to 2.3.14
+ * use nullish coalescing assignment `??=` where possible
+
 2.0.0 / 2025-06-18
 ==================
 
