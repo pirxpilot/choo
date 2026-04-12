@@ -27,7 +27,7 @@ export default function choo(opts = {}) {
 
   assert(typeof opts === 'object', 'choo: opts should be type object');
 
-  const { history: historyEnabled = true, href: hrefEnabled = true, hash: hashEnabled = false } = opts;
+  const { history: historyEnabled = true, href: hrefEnabled = true, hash: hashEnabled = false, prefix } = opts;
 
   let loaded = false;
   const stores = [ondomtitlechange];
@@ -143,14 +143,16 @@ export default function choo(opts = {}) {
       };
 
       if (hrefEnabled) {
-        nanohref(location => {
-          const { href, hash } = location;
-          if (href === window.location.href) {
-            if (!hashEnabled && hash) scrollToAnchor(hash);
-            return;
-          }
-          emit(EVENTS.PUSHSTATE, href);
-        });
+        nanohref(
+          ({ href, hash }) => {
+            if (href === window.location.href) {
+              if (!hashEnabled && hash) scrollToAnchor(hash);
+              return;
+            }
+            emit(EVENTS.PUSHSTATE, href);
+          },
+          { prefix }
+        );
       }
     }
 
