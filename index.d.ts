@@ -16,6 +16,7 @@ declare namespace Choo {
     history?: boolean;
     href?: boolean;
     hash?: boolean;
+    prefix?: string;
   }
 
   export interface IState {
