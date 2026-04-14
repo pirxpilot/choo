@@ -62,6 +62,39 @@ test('router should ignore hashes by default', t => {
   app.toString('/account#security');
 });
 
+// prefix option
+
+test('route should prepend prefix to route path', t => {
+  t.plan(1);
+  const app = choo({ prefix: '/app' });
+  app.route('/foo', (_state, _emit) => {
+    t.assert.ok(true);
+    return '<div></div>';
+  });
+  app.toString('/app/foo');
+});
+
+test('state should include prefixed href and route', t => {
+  t.plan(4);
+  const app = choo({ prefix: '/app' });
+  app.route('/:name', (state, _emit) => {
+    t.assert.equal(state.href, '/app/bar', 'state has prefixed href');
+    t.assert.equal(state.route, 'app/:name', 'state has prefixed route');
+    t.assert.ok(Object.hasOwn(state, 'params'), 'state has params');
+    t.assert.deepEqual(state.params, { name: 'bar' }, 'params match');
+    return '<div></div>';
+  });
+  app.toString('/app/bar');
+});
+
+test('route without prefix should not match unprefixed path', t => {
+  const app = choo({ prefix: '/app' });
+  app.route('/foo', (_state, _emit) => {
+    return '<div></div>';
+  });
+  t.assert.throws(() => app.toString('/foo'), 'unprefixed path does not match');
+});
+
 // built-in state
 
 test('state should include events', t => {

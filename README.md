@@ -11,7 +11,7 @@ Fork of [choo] only even smaller.
 - removed built-in support for `nanocomponent`
 - removed build-in support for `nanohtml`
 - modern javascript syntax
-- added `prefix` option — when set, only intercepts link clicks for hrefs starting with the given prefix
+- added `prefix` option — facilitates serving the app from URL with a pathname
 
 ## License
 
