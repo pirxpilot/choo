@@ -94,7 +94,7 @@ export default function choo(opts = {}) {
     const routeTiming = nanotiming(`choo.route('${route}')`);
     assert(typeof route === 'string', 'choo.route: route should be type string');
     assert(typeof handler === 'function', 'choo.handler: route should be type function');
-    router.on(route, handler);
+    router.on(prefix ? prefix + route : route, handler);
     routeTiming();
   }
 
