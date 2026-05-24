@@ -28,18 +28,18 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@pirxpilot/nanoassert": "~1",
-    "@pirxpilot/nanobus": "^2.0.0",
-    "@pirxpilot/nanohref": "^2.1.0",
+    "@pirxpilot/nanoassert": "~2",
+    "@pirxpilot/nanobus": "~2",
+    "@pirxpilot/nanohref": "~2",
     "@pirxpilot/nanomorph": "~2",
-    "@pirxpilot/nanoraf": "^1.0.0",
-    "@pirxpilot/nanorouter": "^2.0.0",
-    "@pirxpilot/nanotiming": "^1.0.0",
-    "document-ready": "^2.0.1",
-    "scroll-to-anchor": "^1.0.0"
+    "@pirxpilot/nanoraf": "~2",
+    "@pirxpilot/nanorouter": "~2",
+    "@pirxpilot/nanotiming": "~2",
+    "document-ready": "~2",
+    "scroll-to-anchor": "^1.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.14",
+    "@biomejs/biome": "2.4.15",
     "browser-env": "^3.3.0"
   },
   "resolutions": {
